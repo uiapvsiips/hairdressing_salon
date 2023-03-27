@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from salon.models import Services, Master
 from administrator.models import Schedule
@@ -15,7 +15,7 @@ def services_handler(request):
     # Get services for a week and get unique service_ids from there
     services_for_week = Services.objects.filter(master__services__master__in=masters_for_week)
     unique_services_for_week = set([service for service in services_for_week])
-    
+
     return render(request, 'services.html', context= {'unique_services_for_week': unique_services_for_week})
 
 
@@ -30,3 +30,7 @@ def specialist_id_handler(request, specialist_id):
 
 def specialist_handler(request):
     return HttpResponse(f'Specialists page')
+
+
+def root_handler(request):
+    return redirect('/services/')
