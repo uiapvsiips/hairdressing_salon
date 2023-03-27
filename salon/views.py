@@ -15,8 +15,8 @@ def services_handler(request):
     # Get services for a week and get unique service_ids from there
     services_for_week = Services.objects.filter(master__services__master__in=masters_for_week)
     unique_services_for_week = set([service for service in services_for_week])
+    
     return render(request, 'services.html', context= {'unique_services_for_week': unique_services_for_week})
-    return HttpResponse(f'Services for a week {unique_services_for_week}')
 
 
 def service_id_handler(request, service_id):
