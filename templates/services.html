@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Services</title>
+</head>
+<body>
+{% for service in unique_services_for_week %}
+  <p>{{ service.name }}. Ціна: {{ service.price }} грн.</p>
+{% endfor %}
+</body>
+</html>
