@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from salon.models import Services, Master
+from salon.models import Services, Master, Master_Services
 
 # Create your views here.
 def panel(request):
@@ -27,15 +27,19 @@ def specialists(request):
 
 def specialist_id_handler(request, specialist_id):
     specialist = Master.objects.filter(id=specialist_id).first()
-    ser = specialist.services
-    specialist_services = Services.objects.filter(master__services__in=specialist.services)
     if request.method == 'POST':
         specialist.name = request.POST.get('specialist_name')
         specialist.phone = request.POST.get('specialist_phone')
         specialist.rank = request.POST.get('specialist_rank')
         specialist.status = request.POST.get('specialist_status')
         specialist.save()
-    return render(request, 'admin_specialist.html', context={'specialist': specialist,'specialist_services': specialist_services})
+        choosen_services = [service for service in request.POST if service.startswith('service_')]
+        specialist.services.add(*[int(service.split('_')[1]) for service in choosen_services])
+        ms = Master_Services.objects.filter(master=specialist).all().exclude(service_id__in=[int(service.split('_')[1]) for service in choosen_services]).delete()
+        b=1
+    specialist_services = Services.objects.filter(id__in=specialist.services.all())
+    no_specialist_services = Services.objects.exclude(id__in=specialist.services.all())
+    return render(request, 'admin_specialist.html', context={'specialist': specialist,'specialist_services': specialist_services,'no_specialist_services': no_specialist_services})
 
 
 def services_handler(request):

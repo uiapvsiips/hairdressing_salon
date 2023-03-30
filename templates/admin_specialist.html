@@ -10,6 +10,9 @@
   #input_field{
       margin: 4px;
   }
+  button{
+      margin-top: 20px;
+  }
     </style>
 </head>
 <body>
@@ -32,13 +35,24 @@
           <input type="text" id="specialist_status" name="specialist_status" value="{{ specialist.status }}">
          </div>
      <div>
+     <p>Наявні послуги:</p>
           {% for specialist_service in specialist_services %}
   <label>
-    <input type="checkbox" name="service_{{ specialist_service.id }}">
+    <input type="checkbox" name="service_{{ specialist_service.id }}" checked>
       {{ specialist_service.name }}
   </label>
 {% endfor %}
      </div>
+ <div>
+       <p>Доступні для додавання послуги:</p>
+     {% for no_specialist_service in no_specialist_services %}
+  <label>
+
+    <input type="checkbox" name="service_{{ no_specialist_service.id }}">
+      {{ no_specialist_service.name }}
+  </label>
+{% endfor %}
+ </div>
      <button type="submit">Редагувати</button>
  </form>
 </body>
