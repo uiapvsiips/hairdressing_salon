@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Services</title>
+    <style>
+  form{
+    display: inline-block;
+  }
+  #input_field{
+      margin: 4px;
+  }
+    </style>
+</head>
+<body>
+ <form id="form" action="" method="post">
+     {% csrf_token %}
+     <div id="input_field">
+          <label for="specialist_name">Ім'я спеціаліста:</label>
+          <input type="text" id="specialist_name" name="specialist_name" value="{{ specialist.name }}">
+     </div>
+     <div id="input_field">
+          <label for="specialist_phone">Телефон:</label>
+          <input type="text" id="specialist_phone" name="specialist_phone" value="{{ specialist.phone }}">
+     </div>
+     <div id="input_field">
+          <label for="specialist_rank">Ранг:</label>
+          <input type="text" id="specialist_rank" name="specialist_rank" value="{{ specialist.rank }}">
+     </div>
+     <div id="input_field">
+          <label for="specialist_status">Статус:</label>
+          <input type="text" id="specialist_status" name="specialist_status" value="{{ specialist.status }}">
+         </div>
+     <div>
+          {% for specialist_service in specialist_services %}
+  <label>
+    <input type="checkbox" name="service_{{ specialist_service.id }}">
+      {{ specialist_service.name }}
+  </label>
+{% endfor %}
+     </div>
+     <button type="submit">Редагувати</button>
+ </form>
+</body>
+</html>

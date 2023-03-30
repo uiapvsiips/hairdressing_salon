@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Services</title>
+    <style>
+  form{
+    display: flex;
+  }
+  div{
+      display: grid;
+      margin: 4px;
+      text-align: center;
+  }
+    </style>
+</head>
+<body>
+{% for service in services %}
+  <p><a href="/panel/services/{{ service.id }}/">{{ service.name }}. Ціна: {{ service.price }} грн.</a></p>
+{% endfor %}
+ <form id="form" action="" method="post">
+     {% csrf_token %}
+     <div>
+          <label for="company">Назва послуги:</label>
+          <input type="service_name" id="service_name" name="service_name"><br><br>
+     </div>
+     <div>
+          <label for="price">Ціна послуги:</label>
+          <input type="text" id="price" name="price"><br><br>
+         </div>
+     <div>
+          <label for="duration">Час виконання послуги:</label>
+          <input type="text" id="duration" name="duration"><br><br>
+         </div>
+     <button type="submit">Додати</button>
+ </form>
+</body>
+</html>

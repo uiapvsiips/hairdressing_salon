@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Specialists</title>
+    <style>
+        #input_fields {
+            display: flex;
+        }
+        #one_input_field
+        {
+            display: grid;
+            margin: 4px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+{% for specialist in specialists %}
+    <p><a href="/panel/specialists/{{ specialist.id }}/">{{ specialist.name }}. Телефон: {{ specialist.phone }}.
+        Ранг: {{ specialist.rank }} Статус: {{ specialist.status }}</a></p>
+{% endfor %}
+<form id="form" action="" method="post">
+    {% csrf_token %}
+    <div id="input_fields">
+        <div id="one_input_field">
+            <label for="specialist_name">Ім'я спеціаліста:</label>
+            <input type="text" id="specialist_name" name="specialist_name">
+        </div>
+        <div id="one_input_field">
+            <label for="specialist_phone">Телефон:</label>
+            <input type="text" id="specialist_phone" name="specialist_phone">
+        </div>
+        <div id="one_input_field">
+            <label for="specialist_rank">Ранг:</label>
+            <input type="text" id="specialist_rank" name="specialist_rank">
+        </div>
+    </div>
+    <div id="services">
+        {% for service in services %}
+  <label>
+    <input type="checkbox" name="service_{{ service.id }}">
+      {{ service.name }}
+  </label>
+{% endfor %}
+    </div>
+    <button type="submit">Додати</button>
+</form>
+</body>
+</html>
