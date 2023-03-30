@@ -35,8 +35,8 @@ def specialist_id_handler(request, specialist_id):
         specialist.save()
         choosen_services = [service for service in request.POST if service.startswith('service_')]
         specialist.services.add(*[int(service.split('_')[1]) for service in choosen_services])
-        ms = Master_Services.objects.filter(master=specialist).all().exclude(service_id__in=[int(service.split('_')[1]) for service in choosen_services]).delete()
-        b=1
+        specialist_services = Master_Services.objects.filter(master=specialist).all()
+        specialist_services.exclude(service_id__in=[int(service.split('_')[1]) for service in choosen_services]).delete()
     specialist_services = Services.objects.filter(id__in=specialist.services.all())
     no_specialist_services = Services.objects.exclude(id__in=specialist.services.all())
     return render(request, 'admin_specialist.html', context={'specialist': specialist,'specialist_services': specialist_services,'no_specialist_services': no_specialist_services})
