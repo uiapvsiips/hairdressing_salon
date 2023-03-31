@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
-from salon.models import Services, Master, Master_Services
-from administrator.models import Schedule
 from datetime import datetime
+
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+
+from administrator.models import Schedule
+from salon.models import Services, Master, Master_Services
+
 
 # Create your views here.
 def panel(request):
@@ -60,6 +63,7 @@ def services_handler(request):
     services = Services.objects.all()
     return render(request, 'admin_services.html', context={'services': services})
 
+
 def service_id_handler(request, service_id):
     service = Services.objects.filter(id=service_id).first()
     if request.method == 'POST':
@@ -72,16 +76,17 @@ def service_id_handler(request, service_id):
 
 def edit_schedule(request, specialist_id):
     # Видалення наявних розкладів
-    Schedule.objects.filter(master=specialist_id).exclude(id__in=[date.split('_')[1] for date in request.POST if date.startswith('date')]).delete()
+    Schedule.objects.filter(master=specialist_id).exclude(
+        id__in=[date.split('_')[1] for date in request.POST if date.startswith('date')]).delete()
     # Редагування наявних розкладів
-    current_schedules = [date.split('_')[1] for date in request.POST if date.startswith('date_')]
-    for current_schedule_id in current_schedules:
+    current_schedules_ids = [date.split('_')[1] for date in request.POST if date.startswith('date_')]
+    for current_schedule_id in current_schedules_ids:
         current_date = request.POST.get(f'date_{current_schedule_id}')
         current_start_time = request.POST.get(f'start_time_{current_schedule_id}')
         current_end_time = request.POST.get(f'end_time_{current_schedule_id}')
         schedule = Schedule.objects.get(id=current_schedule_id)
         schedule.date = current_date
-        schedule.start_time= current_start_time
+        schedule.start_time = current_start_time
         schedule.end_time = current_end_time
         schedule.save()
     # Додавання нових розкладів

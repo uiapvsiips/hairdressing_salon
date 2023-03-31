@@ -6,9 +6,8 @@ def user(request):
 
 
 def booking(request):
-    if request.method=='POST':
-        return HttpResponse('your bookings will be here')
-    return redirect('/user/')
+    return render(request, 'booking.html')
+
 
 
 def login(request):
