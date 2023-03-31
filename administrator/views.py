@@ -71,5 +71,25 @@ def service_id_handler(request, service_id):
 
 
 def edit_schedule(request, specialist_id):
-    b=1
+    # Видалення наявних розкладів
+    Schedule.objects.filter(master=specialist_id).exclude(id__in=[date.split('_')[1] for date in request.POST if date.startswith('date')]).delete()
+    # Редагування наявних розкладів
+    current_schedules = [date.split('_')[1] for date in request.POST if date.startswith('date_')]
+    for current_schedule_id in current_schedules:
+        current_date = request.POST.get(f'date_{current_schedule_id}')
+        current_start_time = request.POST.get(f'start_time_{current_schedule_id}')
+        current_end_time = request.POST.get(f'end_time_{current_schedule_id}')
+        schedule = Schedule.objects.get(id=current_schedule_id)
+        schedule.date = current_date
+        schedule.start_time= current_start_time
+        schedule.end_time = current_end_time
+        schedule.save()
+    # Додавання нових розкладів
+    new_schedules_count = len([date for date in request.POST if date.startswith('new_date')])
+    for i in range(0, new_schedules_count):
+        date = request.POST[f'new_date_{i}']
+        start_time = request.POST[f'new_start_time_{i}']
+        end_time = request.POST[f'new_end_time_{i}']
+        new_schedule = Schedule(master_id=specialist_id, date=date, start_time=start_time, end_time=end_time)
+        new_schedule.save()
     return redirect('.')

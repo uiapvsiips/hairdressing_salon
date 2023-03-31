@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="249cefd4-f4e8-4ab0-a4cc-ef15961442f9" name="Changes" comment="add hw3">
+    <list default="true" id="249cefd4-f4e8-4ab0-a4cc-ef15961442f9" name="Changes" comment="upd hw3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administrator/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/administrator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin_specialist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_specialist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_specialists.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_specialists.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,16 +37,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/PycharmProjects/hairdressing_salon/templates&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/User/PycharmProjects/hairdressing_salon",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\PycharmProjects\hairdressing_salon\templates" />
@@ -122,6 +120,7 @@
       <workItem from="1679856109892" duration="226000" />
       <workItem from="1679857909149" duration="3437000" />
       <workItem from="1679939470372" duration="5425000" />
+      <workItem from="1680269684187" duration="4661000" />
     </task>
     <task id="LOCAL-00001" summary="upd hw1">
       <created>1679485343281</created>
@@ -158,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680198543494</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="upd hw3">
+      <created>1680269703655</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680269703655</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -179,26 +185,22 @@
     <MESSAGE value="upd hw1" />
     <MESSAGE value="upd hw2" />
     <MESSAGE value="add hw3" />
-    <option name="LAST_COMMIT_MESSAGE" value="add hw3" />
+    <MESSAGE value="upd hw3" />
+    <option name="LAST_COMMIT_MESSAGE" value="upd hw3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/administrator/views.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/administrator/views.py</url>
-          <line>73</line>
-          <option name="timeStamp" value="37" />
+          <line>85</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/hairdressing_salon$manage.coverage" NAME="manage Coverage Results" MODIFIED="1680256305124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$manage.coverage" NAME="manage Coverage Results" MODIFIED="1680274282402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$test.coverage" NAME="test Coverage Results" MODIFIED="1679945310541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

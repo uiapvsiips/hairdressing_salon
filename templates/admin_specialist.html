@@ -2,20 +2,31 @@
 <html lang="en">
 <head>
     <script>
+        var counter = 0;
+        function deleteRow(btn, event) {
+            event.preventDefault();
+  var row = btn.parentNode;
+  row.parentNode.removeChild(row);
+}
 function add_new_field(event) {
     event.preventDefault();
-    var date_field = '<input type="date" name="date" value="{{ today|date:'Y-m-d' }}">';
-    var start_time_field ='<input type="time" name="start_time">'
-    var end_time_field ='<input type="time" name="end_time">'
+    var date_field = '<input type="date" name="new_date_' + counter + '" value="{{ today|date:'Y-m-d' }}" class="date">';
+    var start_time_field ='<input type="time" name="new_start_time_' + counter +'" class="date">'
+    var end_time_field ='<input type="time" name="new_end_time_'+counter+'" class="date">'
+    var delete_row = '<button onclick="deleteRow(this, event)">Видалити</button>'
     var new_fields_div = document.createElement("div");
     new_fields_div.id ="if"
-    new_fields_div.innerHTML = date_field + start_time_field + end_time_field;
+    new_fields_div.innerHTML = date_field + start_time_field + end_time_field + delete_row;
     document.getElementById('new_fields').insertBefore(new_fields_div, document.getElementById('add_field_button'));
+    counter++
 }
 </script>
     <meta charset="UTF-8">
     <title>Admin Services</title>
     <style>
+        .date{
+            margin-right: 4px;
+        }
         #schedule_info, #if{
             margin-top: 5px;
         }
@@ -84,10 +95,10 @@ function add_new_field(event) {
   <input type="date" id="date-input" name="date_{{ schedule.id }}" value="{{ schedule.date|date:"Y-m-d" }}">
   <input type="time" id="start_time-input" name="start_time_{{ schedule.id }}" value="{{ schedule.start_time|time:"H:i" }}">
   <input type="time" id="end_time-input" name="end_time_{{ schedule.id }}" value="{{ schedule.end_time|time:"H:i" }}">
+        <button onclick="deleteRow(this, event)">Видалити</button>
         </div>
 {% endfor %}
 <div id="new_fields">
-
 <button id="add_field_button" onclick="add_new_field(event)">Add new field</button>
 </div>
 <button type="submit">Редагувати</button>
