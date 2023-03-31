@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #main {
+            display: inline-block;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Booking service</title>
+</head>
+<body>
+{% if date %}
+    <form id="main_form"  method="post" action="book/">
+        {% csrf_token %}
+        <div id="main">
+            <p>На який час ви бажаєте забронювати послугу?</p>
+            {% for time_interval in time_intervals %}
+                <div>
+                    <label>
+                        <input type="radio" name="time" value="{{ date }} {{ time_interval }}">
+                        {{ time_interval }}
+                    </label>
+                </div>
+            {% endfor %}
+            <button type="submit">Забронювати</button>
+        </div>
+    </form>
+
+
+{% else %}
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <p>На яку дату ви бажаєте отримати вказану послугу?</p>
+            <input type="date" id="date-input" name="date">
+            <button type="submit">Обрати дату</button>
+        </div>
+    </form>
+{% endif %}
+</body>
+</html>

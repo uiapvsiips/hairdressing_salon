@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking to service</title>
+</head>
+<body>
+{% for service in services %}
+  <p><a href="{{ service.id }}/">{{ service.name }}. Ціна: {{ service.price }} грн.</a></p>
+{% endfor %}
+</body>
+</html>
