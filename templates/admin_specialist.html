@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+function add_new_field(event) {
+    event.preventDefault();
+    var date_field = '<input type="date" name="date" value="{{ today|date:'Y-m-d' }}">';
+    var start_time_field ='<input type="time" name="start_time">'
+    var end_time_field ='<input type="time" name="end_time">'
+    var new_fields_div = document.createElement("div");
+    new_fields_div.id ="if"
+    new_fields_div.innerHTML = date_field + start_time_field + end_time_field;
+    document.getElementById('new_fields').insertBefore(new_fields_div, document.getElementById('add_field_button'));
+}
+</script>
     <meta charset="UTF-8">
     <title>Admin Services</title>
     <style>
+        #schedule_info, #if{
+            margin-top: 5px;
+        }
   form{
     display: inline-block;
   }
@@ -28,7 +43,13 @@
      </div>
      <div id="input_field">
           <label for="specialist_rank">Ранг:</label>
-          <input type="text" id="specialist_rank" name="specialist_rank" value="{{ specialist.rank }}">
+          <select name="specialist_rank">
+{% for choice in specialist.RANK_CHOISES %}
+        <option value="{{ choice.0 }}" {% if choice.0 == specialist.rank %}selected{% endif %}>
+            {{ choice.1 }}
+        </option>
+    {% endfor %}
+</select>
      </div>
      <div id="input_field">
           <label for="specialist_status">Статус:</label>
@@ -55,5 +76,21 @@
  </div>
      <button type="submit">Редагувати</button>
  </form>
+<form id="schedule_form" method="post", action="edit_schedule">
+{% csrf_token %}
+    <p>Розклад майстра:</p>
+    {% for schedule in specialist_schedule %}
+        <div id="schedule_info">
+  <input type="date" id="date-input" name="date_{{ schedule.id }}" value="{{ schedule.date|date:"Y-m-d" }}">
+  <input type="time" id="start_time-input" name="start_time_{{ schedule.id }}" value="{{ schedule.start_time|time:"H:i" }}">
+  <input type="time" id="end_time-input" name="end_time_{{ schedule.id }}" value="{{ schedule.end_time|time:"H:i" }}">
+        </div>
+{% endfor %}
+<div id="new_fields">
+
+<button id="add_field_button" onclick="add_new_field(event)">Add new field</button>
+</div>
+<button type="submit">Редагувати</button>
+</form>
 </body>
 </html>

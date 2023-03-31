@@ -1,6 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from salon.models import Services, Master, Master_Services
+from administrator.models import Schedule
+from datetime import datetime
 
 # Create your views here.
 def panel(request):
@@ -26,20 +28,26 @@ def specialists(request):
 
 
 def specialist_id_handler(request, specialist_id):
-    specialist = Master.objects.filter(id=specialist_id).first()
+    specialist = get_object_or_404(Master, id=specialist_id)
     if request.method == 'POST':
         specialist.name = request.POST.get('specialist_name')
         specialist.phone = request.POST.get('specialist_phone')
-        specialist.rank = request.POST.get('specialist_rank')
+        specialist.rank = int(request.POST.get('specialist_rank'))
         specialist.status = request.POST.get('specialist_status')
         specialist.save()
-        choosen_services = [service for service in request.POST if service.startswith('service_')]
-        specialist.services.add(*[int(service.split('_')[1]) for service in choosen_services])
-        specialist_services = Master_Services.objects.filter(master=specialist).all()
-        specialist_services.exclude(service_id__in=[int(service.split('_')[1]) for service in choosen_services]).delete()
+        # Обираємо сервіси, які відмічені чекбоксом та додаємо їх для майстра
+        choosen_services = [service.split('_')[1] for service in request.POST if service.startswith('service_')]
+        specialist.services.set(choosen_services)
+        # Виключаємо сервіси, які відмічені чекбоксом (отримуємо невідмічені), та видаляємо їх для цього майстра
+        Master_Services.objects.filter(master=specialist).exclude(service__in=choosen_services).delete()
+    specialist_schedule = Schedule.objects.filter(master=specialist).all()
     specialist_services = Services.objects.filter(id__in=specialist.services.all())
     no_specialist_services = Services.objects.exclude(id__in=specialist.services.all())
-    return render(request, 'admin_specialist.html', context={'specialist': specialist,'specialist_services': specialist_services,'no_specialist_services': no_specialist_services})
+    return render(request, 'admin_specialist.html', context={'specialist': specialist,
+                                                             'specialist_services': specialist_services,
+                                                             'no_specialist_services': no_specialist_services,
+                                                             'specialist_schedule': specialist_schedule,
+                                                             'today': datetime.today()})
 
 
 def services_handler(request):
@@ -60,3 +68,8 @@ def service_id_handler(request, service_id):
         service.duration = request.POST.get('duration')
         service.save()
     return render(request, 'admin_service.html', context={'service': service})
+
+
+def edit_schedule(request, specialist_id):
+    b=1
+    return redirect('.')
