@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-
 class Services(models.Model):
     name = models.CharField(max_length=150)
     price = models.IntegerField()
@@ -20,13 +19,16 @@ class Master(models.Model):
     rank = models.IntegerField(default=0, choices=RANK_CHOISES)
     services = models.ManyToManyField(Services, blank=True, null=True, through='Master_Services')
 
+
 class Master_Services(models.Model):
     master = models.ForeignKey(Master, on_delete=models.CASCADE)
     service = models.ForeignKey(Services, on_delete=models.CASCADE)
 
 class Booking(models.Model):
     master = models.ForeignKey(Master, on_delete=models.CASCADE)
-    service = models.ForeignKey(Services, on_delete=models.CASCADE)
+    service = models.ForeignKey(Master_Services, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateField(auto_now=True)
+    start_time = models.TimeField(auto_now=True)
+    end_time = models.TimeField(auto_now=True)
     status = models.IntegerField(default=0)

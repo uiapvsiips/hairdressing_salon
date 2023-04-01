@@ -7,12 +7,3 @@ class Schedule(models.Model):
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
-
-    def is_working(self, booking_time):
-        start = datetime.combine(self.date, self.start_time)
-        end = datetime.combine(self.date, self.end_time)
-
-        if start <= booking_time <= end:
-            return True
-        else:
-            return False
