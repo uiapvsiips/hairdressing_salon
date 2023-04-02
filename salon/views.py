@@ -21,7 +21,7 @@ def services_handler(request):
 
 
 def service_id_handler(request, service_id):
-    return HttpResponse(f'Service id: {service_id}')
+    return render(request, 'booking_service.html', {"service_id":service_id})
 
 
 def specialist_id_handler(request, specialist_id):

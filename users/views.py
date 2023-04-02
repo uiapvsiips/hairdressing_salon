@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from salon.models import Services, Master, Master_Services
 from administrator.models import Schedule
 from datetime import datetime, timedelta
+from salon.models import Booking
+from salon.schedule_worker import get_time_vars_for_service, sort_key
 
 
 def user(request):
@@ -11,8 +13,42 @@ def user(request):
 
 
 def booking(request):
-    return render(request, 'booking.html')
+    if request.POST:
+        if not request.POST.get('master_id'):
+            booking_date = request.POST.get('date')
+            service_id = request.POST.get('service_id')
+            masters_for_service = Master.objects.filter(master_services__service=service_id).all()
+            all_time_vars = []
+            for master in masters_for_service:
+                current_master_time_vars = get_time_vars_for_service(master.id, booking_date, service_id)
+                for current_time_var in current_master_time_vars:
+                    if not all_time_vars:
+                        all_time_vars+=current_master_time_vars
+                        break
+                    if not current_time_var.split(' ')[0] in [time_var.split(' ')[0] for time_var in all_time_vars]:
+                        all_time_vars.append(current_time_var)
+            sorted_vars = sorted(all_time_vars, key=sort_key)
+    d=1
+    return render(request, 'booking_service.html', {'date': booking_date, 'all_time_vars':sorted_vars})
 
+def end_booking(request):
+    info_about_booking = request.POST['time'].split(' ')
+    date = info_about_booking[0]
+    time = info_about_booking[1]
+    master_id = info_about_booking[2]
+    service_id = info_about_booking[3]
+    master = Master.objects.get(id=master_id)
+    service = Services.objects.get(id=service_id)
+    master_service = Master_Services.objects.get(master_id=master_id, service_id=service_id)
+    start_time = datetime.strptime(f'{date} {time}', '%Y-%m-%d %H:%M:%S')
+    end_time = start_time + timedelta(minutes=service.duration)
+
+    str_start_time = start_time.time().strftime("%H:%M:%S")
+    new_booking = Booking(master=master, service=master_service, user_id=1, date=start_time.date(),
+                          start_time=start_time.time(), end_time=end_time.time())
+    new_booking.save()
+    d=1
+    return HttpResponse('OK')
 
 
 def login(request):
@@ -22,53 +58,3 @@ def login(request):
 def register(request):
     return HttpResponse('Register page')
 
-
-def booking_specialists(request):
-    return render(request, 'booking_specialists.html')
-
-
-def booking_services(request):
-    services = Services.objects.all()
-    return render(request, 'booking_services.html', {'services':services})
-
-
-def booking_to_service(request, service_id):
-    if request.POST:
-        service = Services.objects.get(id=service_id)
-        masters_for_service = Master_Services.objects.filter(service=service).values('master_id')
-        date = request.POST['date']
-        min_time = Schedule.objects.filter(date=date, master_id__in=masters_for_service).aggregate(Min('start_time'))
-        max_time = Schedule.objects.filter(date=date, master_id__in=masters_for_service).aggregate(Max('end_time'))
-        time_intervals = []
-        start_time = datetime.strptime(str(min_time['start_time__min']), '%H:%M:%S')
-        end_time = datetime.strptime(str(max_time['end_time__max']), '%H:%M:%S')
-        current_interval = start_time
-        while current_interval < end_time:
-            time_intervals.append(current_interval.strftime('%H:%M'))
-            current_interval += timedelta(minutes=service.duration+10)
-        return render(request, 'booking_service.html', {'date': date, 'time_intervals':time_intervals})
-    else:
-        return render(request, 'booking_service.html')
-
-
-def booking_to_specialist(request, specialist_id):
-    return None
-
-
-def end_service_booking(request, service_id):
-    if request.POST:
-        masters_for_service = Master_Services.objects.filter(service_id=service_id).values('master_id')
-        booking_datetime = datetime.strptime(request.POST['time'], '%Y-%m-%d %H:%M')
-        # booking_time = datetime.strptime(datetime.today().date()+booking_datetime.split(' ')[1], '%Y-%M-%D%H:%M')
-        booking_date =  request.POST['time'].split(' ')[0]
-        chosen_master = Schedule.objects.filter(master_id__in=masters_for_service, date=booking_date).order_by('?').all()
-        for master in chosen_master:
-            boo = master.is_working(booking_datetime)
-            d=1
-            if boo:
-                break
-    return redirect('.')
-
-
-def end_specialist_booking(request):
-    return None

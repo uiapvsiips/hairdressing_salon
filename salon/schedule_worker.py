@@ -9,7 +9,9 @@ def __get_free_gaps_in_schedule(master_id, booking_date, service_id):
     # бронювання до вказаного майстра на визначену дату
     master = Master.objects.get(id=master_id)
     service = Services.objects.get(id=service_id)
-    masters_schedule = Schedule.objects.get(date=booking_date, master=master)
+    masters_schedule = Schedule.objects.filter(date=booking_date, master=master).first()
+    if not masters_schedule:
+        return []
     masters_bookings_to_date = Booking.objects.filter(master=master, date=booking_date).order_by('start_time').all()
     bookings_to_date_count = len(masters_bookings_to_date)
 
@@ -93,6 +95,9 @@ def get_time_vars_for_service(master_id, booking_date, service_id):
         interval = timedelta(minutes=15)
         current_time = start_time
         while current_time <= end_time:
-            time_vars.append(current_time.strftime("%H:%M:%S"))
+            time_vars.append(f'{current_time.strftime("%H:%M:%S")} {master_id} {service_id}')
             current_time += interval
     return time_vars
+
+def sort_key(item):
+    return item[:8]

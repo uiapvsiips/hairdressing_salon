@@ -7,6 +7,7 @@
 <body>
 {% for service in unique_services_for_week %}
   <p>{{ service.name }}. Ціна: {{ service.price }} грн.</p>
+    <p><a href="{{ service.id }}/">{{ service.name }}. Ціна: {{ service.price }} грн.</a></p>
 {% endfor %}
 </body>
 </html>
