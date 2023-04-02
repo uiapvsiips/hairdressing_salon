@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from salon.models import Services, Master
 from administrator.models import Schedule
 from datetime import datetime, timedelta
-from salon.schedule_worker import get_free_gaps_in_schedule
+from salon.schedule_worker import get_time_vars_for_service
 
 def services_handler(request):
     today = datetime.today().date()
@@ -34,6 +34,6 @@ def specialist_handler(request):
 
 
 def root_handler(request):
-    get_free_gaps_in_schedule(6, '2023-04-06', 18)
-    return HttpResponse(f'OK')
+    time_vars_for_service = get_time_vars_for_service(6, '2023-04-06', 16)
+    return HttpResponse(f'{time_vars_for_service}')
     # return redirect('/services/')
