@@ -1,10 +1,8 @@
 from datetime import datetime
-
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-
 from administrator.models import Schedule
-from salon.models import Services, Master, Master_Services
+from salon.models import Services, Master, Master_Services, Booking
 
 
 # Create your views here.

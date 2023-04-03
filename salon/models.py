@@ -1,5 +1,8 @@
+from Tools.demo.mcast import receiver
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import pre_delete
+
 
 class Services(models.Model):
     name = models.CharField(max_length=150)
