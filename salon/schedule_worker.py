@@ -10,6 +10,7 @@ def __get_free_gaps_in_schedule(master_id, booking_date, service_id):
     master = Master.objects.get(id=master_id)
     service = Services.objects.get(id=service_id)
     masters_schedule = Schedule.objects.filter(date=booking_date, master=master).first()
+    # Якщо майстер в цей день не працює - повертаємо пустий ліст
     if not masters_schedule:
         return []
     masters_bookings_to_date = Booking.objects.filter(master=master, date=booking_date).order_by('start_time').all()

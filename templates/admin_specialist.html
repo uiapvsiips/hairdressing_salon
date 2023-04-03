@@ -97,6 +97,7 @@ function add_new_field(event) {
   <input type="date" id="date-input" name="date_{{ schedule.id }}" value="{{ schedule.date|date:"Y-m-d" }}">
   <input type="time" id="start_time-input" name="start_time_{{ schedule.id }}" value="{{ schedule.start_time|time:"H:i" }}">
   <input type="time" id="end_time-input" name="end_time_{{ schedule.id }}" value="{{ schedule.end_time|time:"H:i" }}">
+            <a href="/panel/specialists/{{ specialist.id }}/masters_booking?date={{ schedule.date|date:"Y-m-d" }}" class="button">Бронювання до майстра</a>
         <button onclick="deleteRow(this, event)">Видалити</button>
         </div>
 {% endfor %}

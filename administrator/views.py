@@ -96,3 +96,12 @@ def edit_schedule(request, specialist_id):
         new_schedule = Schedule(master_id=specialist_id, date=date, start_time=start_time, end_time=end_time)
         new_schedule.save()
     return redirect('.')
+
+
+def masters_booking(request, specialist_id):
+    date = request.GET.get('date').replace('/','')
+    bookings = Booking.objects.filter(master=specialist_id, date=date).order_by('start_time')
+    for booking in bookings:
+        service = Services.objects.get(master_services=booking.service)
+        b=1
+    return render(request, 'admin_specialist_bookings.html', {'bookings': bookings})
