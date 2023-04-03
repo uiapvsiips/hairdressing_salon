@@ -10,17 +10,20 @@ def __get_free_gaps_in_schedule(master_id, booking_date, service_id):
     master = Master.objects.get(id=master_id)
     service = Services.objects.get(id=service_id)
     masters_schedule = Schedule.objects.filter(date=booking_date, master=master).first()
+
     # Якщо майстер в цей день не працює - повертаємо пустий ліст
     if not masters_schedule:
         return []
+
+    # Вибираємо з бази всі записи до майстра на дату. Робимо змінну кількості бронювань на дату
     masters_bookings_to_date = Booking.objects.filter(master=master, date=booking_date).order_by('start_time').all()
     bookings_to_date_count = len(masters_bookings_to_date)
 
-    # Робимо змінні початку та кінця робочого дня майстра
+    # Робимо змінні початку та кінця робочого дня майстра у datetime(для подальшого виклику функції timedelta)
     masters_begin_time = datetime.combine(masters_schedule.date, masters_schedule.start_time)
     masters_end_time = datetime.combine(masters_schedule.date, masters_schedule.end_time)
 
-    # Створюємо змінну, в яку будемо вносити "віконця" майстра
+    # Створюємо ліст, в який будемо вносити "віконця" майстра
     free_gaps_in_schedule = []
 
     # Якщо на вибрану дату до майстра відсутні бронювання, то у вільні проміжки вносимо весь день роботи майстра.
@@ -28,8 +31,8 @@ def __get_free_gaps_in_schedule(master_id, booking_date, service_id):
     if bookings_to_date_count==0:
         free_gaps_in_schedule.append({'start_time': masters_begin_time,
                                    'end_time': masters_end_time-timedelta(minutes=service.duration)})
+   # Якщо наявні бронювання до майстра на певну дату, проходимо по них циклом
     else:
-        # Проходимо циклом по наявних бронюваннях до майстра на певну дату.
         for i in range(0, bookings_to_date_count):
             #  Визначаємо початок та кінець бронювання у форматі datetime
             booking_start_time = datetime.combine(masters_bookings_to_date[i].date,
@@ -47,15 +50,15 @@ def __get_free_gaps_in_schedule(master_id, booking_date, service_id):
                     free_gaps_in_schedule.append({'start_time': break_start_time,
                                            'end_time': break_end_time})
 
-            # Якщо це останнє бронювання на день (з 14:00 до 15:00), то дивимось, чи є час від кінця поточного
-            # бронювання (15:00) до кінця робочого дня майстра (17:00) з урахуванням часу надання послуги
-            # (якщо більше 2 годин - не показуємо).
+            # Якщо це останнє бронювання на день (наприклад, з 14:00 до 15:00), то дивимось, чи є час від кінця
+            # поточного бронювання (15:00) до кінця робочого дня майстра (17:00) з урахуванням часу надання послуги
+            # (якщо послуга надається понад 2 години - не показуємо).
             if i == bookings_to_date_count - 1:
                 break_duration = __get_break_duration(masters_end_time, booking_end_time)
                 break_start_time = booking_end_time
                 break_end_time = masters_end_time - timedelta(minutes=service.duration)
 
-            # В будь якому іншому випадку (вікна між бронюваннями) дивимось, чи вистачає часу від часу закінчення
+            # В будь-якому іншому випадку (вікна між бронюваннями) дивимось, чи вистачає часу від часу закінчення
             # попередньої послуги (12:00) до часу початку наступної (14:00).
             else:
                 next_booking_start_time = datetime.combine(masters_bookings_to_date[i].date,
@@ -82,14 +85,14 @@ def __get_break_duration(next_booking_start_time, prev_booking_end_time):
     return break_duration
 
 def get_time_vars_for_service(master_id, booking_date, service_id):
-    # Отримуємо "віконця" майстра, які по часу дозволяють надати послугу
+    # Отримуємо "віконця" майстра, які більше або дорівнюють часу надання послуги
     free_gaps_in_schedule = __get_free_gaps_in_schedule(master_id, booking_date, service_id)
     time_vars = []
 
-    # Проходимо циклом по кожному "віконцю" та дивимось, чи можемо ми надати клієнту варіаціі по часу на запис з
+    # Проходимо циклом по кожному "віконцю" та дивимось, чи можемо ми надати клієнту варіації по часу на запис з
     # інтервалом в 15 хвилин.
     # Наприклад: якщо вільне віконце у майстра з 09:00 до 10:00, а послуга триває одну годину - запис тільки на 09:00.
-    # Але якшо віконце з 09:00 до 11:00, то клієнт може записатися на 09:00, 09:15, 09:30, 09:45, 10:00.
+    # Але якщо віконце з 09:00 до 11:00, то клієнт може записатися на 09:00, 09:15, 09:30, 09:45, 10:00.
     for gap_in_schedule in free_gaps_in_schedule:
         start_time = gap_in_schedule['start_time']
         end_time = gap_in_schedule['end_time']
