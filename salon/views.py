@@ -37,4 +37,4 @@ def specialist_handler(request):
 
 
 def root_handler(request):
-    return redirect('/services/')
+    return render(request, 'index.html')

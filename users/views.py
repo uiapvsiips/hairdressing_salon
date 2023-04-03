@@ -32,7 +32,7 @@ def booking(request):
                 if not current_time_var.split(' ')[0] in [time_var.split(' ')[0] for time_var in all_time_vars]:
                     all_time_vars.append(current_time_var)
         sorted_vars = sorted(all_time_vars, key=sort_key)
-    return render(request, 'end_booking.html', {'date': booking_date, 'all_time_vars':sorted_vars})
+    return render(request, 'end_booking.html', {'date': booking_date, 'all_time_vars':sorted_vars,  'service': service_id})
 
 def end_booking(request):
     info_about_booking = request.POST['time'].split(' ')
@@ -45,15 +45,10 @@ def end_booking(request):
     master_service = Master_Services.objects.get(master_id=master_id, service_id=service_id)
     start_time = datetime.strptime(f'{date} {time}', '%Y-%m-%d %H:%M:%S')
     end_time = start_time + timedelta(minutes=service.duration)
-
-    str_start_time = start_time.time().strftime("%H:%M:%S")
     new_booking = Booking(master=master, service=master_service, user_id=1, date=start_time.date(),
                           start_time=start_time.time(), end_time=end_time.time())
-    # new_booking = Booking(master=master, service=master_service, user_id=1, date=start_time.date(),
-    #                                         start_time='09:00:00', end_time='09:45:00')
     new_booking.save()
-    d=1
-    return HttpResponse('OK')
+    return HttpResponse(f'Заброньовано! Спеціаліст {master.name}. Дата:{start_time.date()}. Час бронювання: {start_time.time()}.')
 
 
 def login(request):

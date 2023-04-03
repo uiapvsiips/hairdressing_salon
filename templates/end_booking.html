@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+{% if all_time_vars %}
  <form id="main_form" method="post" action="/end_booking/">
         {% csrf_token %}
         <div id="main">
@@ -23,5 +24,9 @@
             <button type="submit">Забронювати</button>
         </div>
     </form>
+{% else %}
+    <p>На обрану дату відсутня можливість надати дану послугу</p>
+    <p><a href="/services/{{ service }}/">Повернутися до вибору дати</a></p>
+{% endif %}
 </body>
 </html>
