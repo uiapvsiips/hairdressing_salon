@@ -5,6 +5,8 @@
     <title>Booking to specialist</title>
 </head>
 <body>
-
+{% for specialist in specialists %}
+  <p><a href="{{ specialist.id }}/">{{ specialist.name }}.</a></p>
+{% endfor %}
 </body>
 </html>

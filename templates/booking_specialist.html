@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking to specialist</title>
+</head>
+<body>
+ <form method="post" action="/booking/">
+        {% csrf_token %}
+<p>Оберіть бажану послугу та дату, на яку бажаєте забронювати послугу</p>
+{% for service in services %}
+    <div>
+        <label>
+            <input type="radio" name="service_id" value="{{ service.id }}">
+            {{ service.name }}
+        </label>
+    </div>
+{% endfor %}
+<input type="date" id="date-input" name="date">
+            <input type="hidden" id="specialist_id" name="specialist_id" value={{ specialist_id }}>
+            <button type="submit">Наступна</button>
+ </form>
+</body>
+</html>

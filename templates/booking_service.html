@@ -10,28 +10,6 @@
     <title>Booking service</title>
 </head>
 <body>
-{% if date %}
-    <form id="main_form" method="post" action="/end_booking/">
-        {% csrf_token %}
-        <div id="main">
-            <p>На який час ви бажаєте забронювати послугу?</p>
-            {% for time_var in all_time_vars %}
-                <div>
-                    <label>
-                    {% load filters %}
-                        {% with words=time_var|split:" " %}
-                            <input type="radio" name="time" value="{{ date }} {{ time_var }}">
-                            {{ words.0 }}
-                        {% endwith %}
-                    </label>
-                </div>
-            {% endfor %}
-            <button type="submit">Забронювати</button>
-        </div>
-    </form>
-
-
-{% else %}
     <form method="post" action="/booking/">
         {% csrf_token %}
         <div>
@@ -41,6 +19,5 @@
             <button type="submit">Обрати дату</button>
         </div>
     </form>
-{% endif %}
 </body>
 </html>

@@ -17,7 +17,7 @@ class Master(models.Model):
     phone = models.CharField(max_length=150)
     status = models.IntegerField(default=0)
     rank = models.IntegerField(default=0, choices=RANK_CHOISES)
-    services = models.ManyToManyField(Services, blank=True, null=True, through='Master_Services')
+    services = models.ManyToManyField(Services, blank=True, through='Master_Services')
 
 
 class Master_Services(models.Model):
@@ -28,7 +28,7 @@ class Booking(models.Model):
     master = models.ForeignKey(Master, on_delete=models.CASCADE)
     service = models.ForeignKey(Master_Services, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField(auto_now=True)
-    start_time = models.TimeField(auto_now=True)
-    end_time = models.TimeField(auto_now=True)
+    date = models.DateField()
+    start_time = models.TimeField(null=True, blank=True)
+    end_time = models.TimeField(null=True, blank=True)
     status = models.IntegerField(default=0)

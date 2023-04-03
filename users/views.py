@@ -14,22 +14,25 @@ def user(request):
 
 def booking(request):
     if request.POST:
-        if not request.POST.get('master_id'):
-            booking_date = request.POST.get('date')
-            service_id = request.POST.get('service_id')
+        booking_date = request.POST.get('date')
+        service_id = request.POST.get('service_id')
+        all_time_vars = []
+        if not request.POST.get('specialist_id'):
             masters_for_service = Master.objects.filter(master_services__service=service_id).all()
-            all_time_vars = []
-            for master in masters_for_service:
-                current_master_time_vars = get_time_vars_for_service(master.id, booking_date, service_id)
-                for current_time_var in current_master_time_vars:
-                    if not all_time_vars:
-                        all_time_vars+=current_master_time_vars
-                        break
-                    if not current_time_var.split(' ')[0] in [time_var.split(' ')[0] for time_var in all_time_vars]:
-                        all_time_vars.append(current_time_var)
-            sorted_vars = sorted(all_time_vars, key=sort_key)
-    d=1
-    return render(request, 'booking_service.html', {'date': booking_date, 'all_time_vars':sorted_vars})
+        else:
+            specialist_id = request.POST.get('specialist_id')
+            masters_for_service = []
+            masters_for_service.append(Master.objects.get(id=specialist_id))
+        for master in masters_for_service:
+            current_master_time_vars = get_time_vars_for_service(master.id, booking_date, service_id)
+            for current_time_var in current_master_time_vars:
+                if not all_time_vars:
+                    all_time_vars+=current_master_time_vars
+                    break
+                if not current_time_var.split(' ')[0] in [time_var.split(' ')[0] for time_var in all_time_vars]:
+                    all_time_vars.append(current_time_var)
+        sorted_vars = sorted(all_time_vars, key=sort_key)
+    return render(request, 'end_booking.html', {'date': booking_date, 'all_time_vars':sorted_vars})
 
 def end_booking(request):
     info_about_booking = request.POST['time'].split(' ')
@@ -46,6 +49,8 @@ def end_booking(request):
     str_start_time = start_time.time().strftime("%H:%M:%S")
     new_booking = Booking(master=master, service=master_service, user_id=1, date=start_time.date(),
                           start_time=start_time.time(), end_time=end_time.time())
+    # new_booking = Booking(master=master, service=master_service, user_id=1, date=start_time.date(),
+    #                                         start_time='09:00:00', end_time='09:45:00')
     new_booking.save()
     d=1
     return HttpResponse('OK')

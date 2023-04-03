@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <form id="main_form" method="post" action="/end_booking/">
+        {% csrf_token %}
+        <div id="main">
+            <p>На який час ви бажаєте забронювати послугу?</p>
+            {% for time_var in all_time_vars %}
+                <div>
+                    <label>
+                    {% load filters %}
+                        {% with words=time_var|split:" " %}
+                            <input type="radio" name="time" value="{{ date }} {{ time_var }}">
+                            {{ words.0 }}
+                        {% endwith %}
+                    </label>
+                </div>
+            {% endfor %}
+            <button type="submit">Забронювати</button>
+        </div>
+    </form>
+</body>
+</html>

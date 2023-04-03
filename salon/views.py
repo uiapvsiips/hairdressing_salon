@@ -25,15 +25,16 @@ def service_id_handler(request, service_id):
 
 
 def specialist_id_handler(request, specialist_id):
-    return HttpResponse(f'Specialist id: {specialist_id}')
+    specialist = Master.objects.get(id=specialist_id)
+    services = Services.objects.filter(master_services__master_id=specialist.id).all()
+    return render(request, 'booking_specialist.html', {"services":services, 'specialist_id':specialist_id})
 
 
 
 def specialist_handler(request):
-    return HttpResponse(f'Specialists page')
+    specialists = Master.objects.filter(status=0).all()
+    return render(request, 'booking_specialists.html', {"specialists":specialists})
 
 
 def root_handler(request):
-    time_vars_for_service = get_time_vars_for_service(6, '2023-04-06', 16)
-    return HttpResponse(f'{time_vars_for_service}')
-    # return redirect('/services/')
+    return redirect('/services/')
