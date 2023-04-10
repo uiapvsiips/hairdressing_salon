@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="249cefd4-f4e8-4ab0-a4cc-ef15961442f9" name="Changes" comment="upd hw4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/salon/schedule_worker.py" beforeDir="false" afterPath="$PROJECT_DIR$/salon/schedule_worker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/salon/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/salon/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +61,7 @@
       <recent name="C:\Users\Kyrylo\PycharmProjects\hairdressing_salon\users" />
     </key>
   </component>
-  <component name="RunManager" selected="Django tests.Test: salon.tests.CalcBreaksTestCase.test_multiple_bookings">
+  <component name="RunManager" selected="Django tests.Test: salon.tests.CalcBreaksTestCase">
     <configuration name="Test: salon.tests.CalcBreaksTestCase" type="DjangoTestsConfigurationType" temporary="true">
       <module name="hairdressing_salon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -222,10 +219,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase.test_multiple_bookings" />
         <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase" />
-        <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase.test_bookings_in_between" />
         <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase.test_one_booking" />
+        <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase.test_multiple_bookings" />
+        <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase.test_bookings_in_between" />
         <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase.test_last_booking" />
       </list>
     </recent_temporary>
@@ -247,7 +244,7 @@
       <workItem from="1680373885491" duration="5466000" />
       <workItem from="1680426780841" duration="5473000" />
       <workItem from="1680460238984" duration="6253000" />
-      <workItem from="1681106231138" duration="3512000" />
+      <workItem from="1681106231138" duration="4009000" />
     </task>
     <task id="LOCAL-00001" summary="upd hw1">
       <created>1679485343281</created>
@@ -333,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680512521395</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="upd hw4">
+      <created>1681111760723</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1681111760723</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,16 +375,6 @@
           <line>81</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/salon/tests.py</url>
-          <line>40</line>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/salon/tests.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="92" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -388,12 +382,12 @@
     <SUITE FILE_PATH="coverage/hairdressing_salon$manage.coverage" NAME="manage Coverage Results" MODIFIED="1681106268933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_no_bookings.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_no_bookings Coverage Results" MODIFIED="1681107625675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_bookings_in_between.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_bookings_in_between Coverage Results" MODIFIED="1681108648636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase.coverage" NAME="Test: salon.tests.CalcBreaksTestCase Coverage Results" MODIFIED="1681111280472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase.coverage" NAME="Test: salon.tests.CalcBreaksTestCase Coverage Results" MODIFIED="1681112054037" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_first_booking.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_first_booking Coverage Results" MODIFIED="1681108231227" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$schedule_worker.coverage" NAME="schedule_worker Coverage Results" MODIFIED="1680376113988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/salon" />
-    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_multiple_bookings.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_multiple_bookings Coverage Results" MODIFIED="1681111489728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_multiple_bookings.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_multiple_bookings Coverage Results" MODIFIED="1681111573197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$test.coverage" NAME="test Coverage Results" MODIFIED="1679945310541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_last_booking.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_last_booking Coverage Results" MODIFIED="1681108529417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_one_booking.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_one_booking Coverage Results" MODIFIED="1681108574842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_one_booking.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_one_booking Coverage Results" MODIFIED="1681111667848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

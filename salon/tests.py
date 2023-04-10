@@ -26,7 +26,7 @@ class CalcBreaksTestCase(TestCase):
     def test_last_booking(self):
         new_booking_start_time = time(hour=9, minute=0)
         new_booking_end_time = time(hour=16, minute=0)
-        new_booking = Booking(date=datetime.now().date(), start_time=new_booking_start_time.time(), end_time=new_booking_end_time.time())
+        new_booking = Booking(date=datetime.now().date(), start_time=new_booking_start_time, end_time=new_booking_end_time)
         free_gaps = calc_breaks(self.master_start_time, self.master_end_time, self.service_duration, [new_booking])
         self.assertEqual(len(free_gaps), 1)
         self.assertEqual(free_gaps[0]['end_time'], self.master_end_time - timedelta(minutes=self.service_duration))
