@@ -1,10 +1,6 @@
-from datetime import date, timedelta
-from datetime import datetime, time
-
+from datetime import datetime, time, timedelta
 from django.contrib.auth.models import User
-from django.test import Client
-from django.test import TestCase
-
+from django.test import Client,TestCase
 from administrator.models import Schedule
 from .models import Booking, Master, Services
 from .schedule_worker import calc_breaks
@@ -146,7 +142,9 @@ class HandlersTests(TestCase):
         actual_time_vars = response.context['all_time_vars']
         self.assertListEqual(expected_time_vars, actual_time_vars)
 
-    def test_booking_ending(self):
+    def test_save_booking(self):
+        # Перевіряємо, що перед тестом був лише 1 букінг
+        self.assertEqual(len(Booking.objects.all()), 1)
         client = Client()
         info_about_booking = {'time': f'{date.today().strftime("%Y-%m-%d")} ' \
                                       f'{time(14, 0, 0).strftime("%H:%M:%S")} ' \

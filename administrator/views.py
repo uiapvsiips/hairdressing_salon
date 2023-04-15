@@ -1,5 +1,5 @@
-from datetime import datetime
-from django.http import HttpResponse
+from datetime import datetime, timedelta
+from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import render, redirect, get_object_or_404
 from administrator.models import Schedule
 from salon.models import Services, Master, Master_Services, Booking
@@ -23,8 +23,11 @@ def specialists(request):
         rank = request.POST.get('specialist_rank')
         new_specialist = Master(name=name, phone=phone, rank=rank)
         choosen_services = [service for service in request.POST if service.startswith('service_')]
-        new_specialist.save()
-        new_specialist.services.add(*[int(service.split('_')[1]) for service in choosen_services])
+        try:
+            new_specialist.save()
+        except Exception as e:
+            return HttpResponseServerError(e)
+        new_specialist.services.set(int(service.split('_')[1]) for service in choosen_services)
     return render(request, 'admin_specialists.html', context={'specialists': specialists, 'services': services})
 
 
@@ -33,15 +36,19 @@ def specialist_id_handler(request, specialist_id):
     if request.method == 'POST':
         specialist.name = request.POST.get('specialist_name')
         specialist.phone = request.POST.get('specialist_phone')
-        specialist.rank = int(request.POST.get('specialist_rank'))
+        specialist.rank = request.POST.get('specialist_rank')
         specialist.status = request.POST.get('specialist_status')
-        specialist.save()
+        try:
+            specialist.save()
+        except Exception as e:
+            return HttpResponseServerError(e)
         # Обираємо сервіси, які відмічені чекбоксом та додаємо їх для майстра
         choosen_services = [service.split('_')[1] for service in request.POST if service.startswith('service_')]
         specialist.services.set(choosen_services)
         # Виключаємо сервіси, які відмічені чекбоксом (отримуємо невідмічені), та видаляємо їх для цього майстра
         Master_Services.objects.filter(master=specialist).exclude(service__in=choosen_services).delete()
-    specialist_schedule = Schedule.objects.filter(master=specialist).all()
+    specialist_schedule = Schedule.objects.filter(master=specialist,
+                                                  date__gte=datetime.today() - timedelta(days=1)).all()
     specialist_services = Services.objects.filter(id__in=specialist.services.all())
     no_specialist_services = Services.objects.exclude(id__in=specialist.services.all())
     return render(request, 'admin_specialist.html', context={'specialist': specialist,
@@ -57,23 +64,29 @@ def services_handler(request):
         price = request.POST.get('price')
         duration = request.POST.get('duration')
         new_service = Services(name=service_name, price=price, duration=duration)
-        new_service.save()
+        try:
+            new_service.save()
+        except Exception as e:
+            return HttpResponseServerError(e)
     services = Services.objects.all()
     return render(request, 'admin_services.html', context={'services': services})
 
 
 def service_id_handler(request, service_id):
-    service = Services.objects.filter(id=service_id).first()
+    service = get_object_or_404(Services, id=service_id)
     if request.method == 'POST':
         service.name = request.POST.get('service_name')
         service.price = request.POST.get('price')
         service.duration = request.POST.get('duration')
-        service.save()
+        try:
+            service.save()
+        except Exception as e:
+            return HttpResponseServerError(e)
     return render(request, 'admin_service.html', context={'service': service})
 
 
 def edit_schedule(request, specialist_id):
-    # Видалення наявних розкладів
+    # Видалення вже наявних розкладів
     Schedule.objects.filter(master=specialist_id).exclude(
         id__in=[date.split('_')[1] for date in request.POST if date.startswith('date')]).delete()
     # Редагування наявних розкладів
@@ -86,7 +99,10 @@ def edit_schedule(request, specialist_id):
         schedule.date = current_date
         schedule.start_time = current_start_time
         schedule.end_time = current_end_time
-        schedule.save()
+        try:
+            schedule.save()
+        except Exception as e:
+            return HttpResponseServerError(e)
     # Додавання нових розкладів
     new_schedules_count = len([date for date in request.POST if date.startswith('new_date')])
     for i in range(0, new_schedules_count):
@@ -94,14 +110,16 @@ def edit_schedule(request, specialist_id):
         start_time = request.POST[f'new_start_time_{i}']
         end_time = request.POST[f'new_end_time_{i}']
         new_schedule = Schedule(master_id=specialist_id, date=date, start_time=start_time, end_time=end_time)
-        new_schedule.save()
+        try:
+            new_schedule.save()
+        except Exception as e:
+            return HttpResponseServerError(e)
     return redirect('.')
 
 
 def masters_booking(request, specialist_id):
-    date = request.GET.get('date').replace('/','')
+    date = request.GET.get('date')
     bookings = Booking.objects.filter(master=specialist_id, date=date).order_by('start_time')
     for booking in bookings:
         service = Services.objects.get(master_services=booking.service)
-        b=1
     return render(request, 'admin_specialist_bookings.html', {'bookings': bookings})
