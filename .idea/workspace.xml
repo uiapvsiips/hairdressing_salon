@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="249cefd4-f4e8-4ab0-a4cc-ef15961442f9" name="Changes" comment="upd hw4">
+    <list default="true" id="249cefd4-f4e8-4ab0-a4cc-ef15961442f9" name="Changes" comment="upd hw5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/salon/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/salon/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/salon/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/salon/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +64,107 @@
       <recent name="C:\Users\Kyrylo\PycharmProjects\hairdressing_salon\users" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.manage">
+  <component name="RunManager" selected="Django tests.Test: salon.tests.HandlersTests.test_booking_ending">
+    <configuration name="Test: salon.tests.HandlersTests" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="hairdressing_salon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="salon.tests.HandlersTests" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: salon.tests.HandlersTests.test_booking_ending" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="hairdressing_salon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="salon.tests.HandlersTests.test_booking_ending" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: salon.tests.HandlersTests.test_booking_free_time" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="hairdressing_salon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="salon.tests.HandlersTests.test_booking_free_time" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: salon.tests.HandlersTests.test_some_specialist_handler" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="hairdressing_salon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="salon.tests.HandlersTests.test_some_specialist_handler" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test: salon.tests.HandlersTests.test_specialist_handler" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="hairdressing_salon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="salon.tests.HandlersTests.test_specialist_handler" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="hairdressing_salon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -110,8 +213,22 @@
     </configuration>
     <list>
       <item itemvalue="Django Server.hairdressing_salon" />
+      <item itemvalue="Django tests.Test: salon.tests.HandlersTests" />
+      <item itemvalue="Django tests.Test: salon.tests.HandlersTests.test_booking_ending" />
+      <item itemvalue="Django tests.Test: salon.tests.HandlersTests.test_booking_free_time" />
+      <item itemvalue="Django tests.Test: salon.tests.HandlersTests.test_some_specialist_handler" />
+      <item itemvalue="Django tests.Test: salon.tests.HandlersTests.test_specialist_handler" />
       <item itemvalue="Python.manage" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Django tests.Test: salon.tests.HandlersTests.test_booking_ending" />
+        <item itemvalue="Django tests.Test: salon.tests.HandlersTests.test_booking_free_time" />
+        <item itemvalue="Django tests.Test: salon.tests.HandlersTests" />
+        <item itemvalue="Django tests.Test: salon.tests.HandlersTests.test_some_specialist_handler" />
+        <item itemvalue="Django tests.Test: salon.tests.HandlersTests.test_specialist_handler" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -130,6 +247,8 @@
       <workItem from="1680373885491" duration="5466000" />
       <workItem from="1680426780841" duration="5473000" />
       <workItem from="1680460238984" duration="6253000" />
+      <workItem from="1681106231138" duration="4879000" />
+      <workItem from="1681537834576" duration="6968000" />
     </task>
     <task id="LOCAL-00001" summary="upd hw1">
       <created>1679485343281</created>
@@ -215,7 +334,21 @@
       <option name="project" value="LOCAL" />
       <updated>1680512521395</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="upd hw4">
+      <created>1681111760723</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1681111760723</updated>
+    </task>
+    <task id="LOCAL-00014" summary="upd hw5">
+      <created>1681112101465</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1681112101465</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +371,8 @@
     <MESSAGE value="add hw3" />
     <MESSAGE value="upd hw3" />
     <MESSAGE value="upd hw4" />
-    <option name="LAST_COMMIT_MESSAGE" value="upd hw4" />
+    <MESSAGE value="upd hw5" />
+    <option name="LAST_COMMIT_MESSAGE" value="upd hw5" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -248,12 +382,31 @@
           <line>58</line>
           <option name="timeStamp" value="74" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/salon/tests.py</url>
+          <line>157</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/hairdressing_salon$manage.coverage" NAME="manage Coverage Results" MODIFIED="1680466437424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/hairdressing_salon$test.coverage" NAME="test Coverage Results" MODIFIED="1679945310541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_no_bookings.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_no_bookings Coverage Results" MODIFIED="1681107625675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_HandlersTests_test_booking_ending.coverage" NAME="Test: salon.tests.HandlersTests.test_booking_ending Coverage Results" MODIFIED="1681549349941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_HandlersTests_test_some_specialist_handler.coverage" NAME="Test: salon.tests.HandlersTests.test_some_specialist_handler Coverage Results" MODIFIED="1681539845298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_HandlersTests.coverage" NAME="Test: salon.tests.HandlersTests Coverage Results" MODIFIED="1681547967307" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase.coverage" NAME="Test: salon.tests.CalcBreaksTestCase Coverage Results" MODIFIED="1681112110892" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_HandlersTests_test_booking_free_time.coverage" NAME="Test: salon.tests.HandlersTests.test_booking_free_time Coverage Results" MODIFIED="1681548751304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_HandlersTests_test_specialist_handler.coverage" NAME="Test: salon.tests.HandlersTests.test_specialist_handler Coverage Results" MODIFIED="1681539288413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_last_booking.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_last_booking Coverage Results" MODIFIED="1681112092883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_ServicesHandlerTest.coverage" NAME="Test: salon.tests.ServicesHandlerTest Coverage Results" MODIFIED="1681538730837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$manage.coverage" NAME="manage Coverage Results" MODIFIED="1681539529942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_bookings_in_between.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_bookings_in_between Coverage Results" MODIFIED="1681108648636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_first_booking.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_first_booking Coverage Results" MODIFIED="1681108231227" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_ServicesHandlerTest_test_services_handler.coverage" NAME="Test: salon.tests.ServicesHandlerTest.test_services_handler Coverage Results" MODIFIED="1681538382719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$schedule_worker.coverage" NAME="schedule_worker Coverage Results" MODIFIED="1680376113988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/salon" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_multiple_bookings.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_multiple_bookings Coverage Results" MODIFIED="1681111573197" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$test.coverage" NAME="test Coverage Results" MODIFIED="1679945310541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_one_booking.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_one_booking Coverage Results" MODIFIED="1681111667848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
