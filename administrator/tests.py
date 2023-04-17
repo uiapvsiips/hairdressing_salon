@@ -1,12 +1,17 @@
-from django.db import transaction
+from datetime import date, timedelta
 from django.test import TestCase, Client
-
+from .models import Schedule
 from salon.models import Master, Services
 
 
 class TetsAdminPanel(TestCase):
     def setUp(self):
         self.master1 = Master.objects.create(name='Master 1', phone='123', rank=2)
+
+        self.schedule1 = Schedule.objects.create(date=date.today(), master=self.master1, start_time='10:00',
+                                                 end_time='17:00')
+        self.schedule2 = Schedule.objects.create(date=date.today()+timedelta(days=1), master=self.master1, start_time='10:00',
+                                                 end_time='17:00')
 
         self.service1 = Services.objects.create(name='Укладка волос', price=1, duration=60)
         self.service2 = Services.objects.create(name='Окрашивание волос', price=1, duration=120)
@@ -117,3 +122,36 @@ class TetsAdminPanel(TestCase):
         # Перевіряємо, що поверне 404 код, якщо передати неіснуючий specialist_id
         response = client.post(f'/panel/services/555/')
         self.assertEqual(response.status_code, 404)
+
+    def test_add_schedule(self):
+        self.assertEqual(len(Schedule.objects.filter(master=self.master1).all()),2)
+        client = Client()
+        new_schedule_info = {f'date_{self.schedule1.id}': self.schedule1.date,
+            f'start_time_{self.schedule1.id}' : self.schedule1.start_time,
+            f'end_time_{self.schedule1.id}': self.schedule1.end_time,
+            f'date_{self.schedule2.id}': self.schedule2.date,
+            f'start_time_{self.schedule2.id}': self.schedule2.start_time,
+            f'end_time_{self.schedule2.id}': self.schedule2.end_time,
+            'new_date_0': (date.today() + timedelta(days=2)).strftime('%Y-%m-%d'),
+            'new_start_time_0' : '10:00',
+            'new_end_time_0': '17:00'
+        }
+        client.post(f'/panel/specialists/{self.master1.id}/edit_schedule', new_schedule_info)
+        self.assertEqual(len(Schedule.objects.filter(master=self.master1).all()), 3)
+    def test_edit_schedule(self):
+        self.assertEqual(Schedule.objects.get(id= self.schedule1.id).date, date.today())
+        client = Client()
+        editing_schedule_info = {f'date_{self.schedule1.id}': self.schedule1.date+timedelta(days=5),
+                             f'start_time_{self.schedule1.id}': self.schedule1.start_time,
+                             f'end_time_{self.schedule1.id}': self.schedule1.end_time}
+        client.post(f'/panel/specialists/{self.master1.id}/edit_schedule', editing_schedule_info)
+        self.assertEqual(Schedule.objects.get(id=self.schedule1.id).date, date.today()+timedelta(days=5))
+
+    def test_delete_schedule(self):
+        self.assertEqual(len(Schedule.objects.filter(master=self.master1).all()),2)
+        client = Client()
+        deleting_schedule_info = {f'date_{self.schedule1.id}': self.schedule1.date,
+                                 f'start_time_{self.schedule1.id}': self.schedule1.start_time,
+                                 f'end_time_{self.schedule1.id}': self.schedule1.end_time}
+        client.post(f'/panel/specialists/{self.master1.id}/edit_schedule', deleting_schedule_info)
+        self.assertEqual(len(Schedule.objects.filter(master=self.master1).all()), 1)

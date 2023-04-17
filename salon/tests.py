@@ -1,4 +1,4 @@
-from datetime import datetime, time, timedelta
+from datetime import datetime, time, timedelta, date
 from django.contrib.auth.models import User
 from django.test import Client,TestCase
 from administrator.models import Schedule
