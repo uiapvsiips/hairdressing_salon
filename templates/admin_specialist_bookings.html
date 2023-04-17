@@ -6,14 +6,18 @@
 
 </head>
 <body>
+{% extends 'base.html' %}
+
+{% block content %}
  {% for booking in bookings %}
       <hr />
 <p>&nbsp;</p>
-     <p>Клієнт: {{ booking.user.last_name }}.</p>
+     <p>Клієнт: {{ booking.user.first_name }} {{ booking.user.last_name }}.</p>
      <p>Послуга: {{ booking.service.service.name }}.</p>
      <p>Час бронювання: з {{ booking.start_time|time:"H:i" }} до {{ booking.end_time|time:"H:i" }}</p>
 {% endfor %}
  <hr />
 <p>&nbsp;</p>
+{% endblock %}
 </body>
 </html>

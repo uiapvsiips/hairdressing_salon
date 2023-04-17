@@ -16,6 +16,9 @@
     </style>
 </head>
 <body>
+{% extends 'base.html' %}
+
+{% block content %}
 {% for specialist in specialists %}
     <p><a href="/panel/specialists/{{ specialist.id }}/">{{ specialist.name }}. Телефон: {{ specialist.phone }}.
         Ранг: {{ specialist.rank }} Статус: {{ specialist.status }}</a></p>
@@ -51,5 +54,6 @@
     </div>
     <button type="submit">Додати</button>
 </form>
+{% endblock %}
 </body>
 </html>

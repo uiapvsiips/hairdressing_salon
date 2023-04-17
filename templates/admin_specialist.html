@@ -42,6 +42,9 @@ function add_new_field(event) {
     </style>
 </head>
 <body>
+
+
+{% block content %}
  <form id="form" action="" method="post">
      {% csrf_token %}
      <div id="input_field">
@@ -108,5 +111,6 @@ function add_new_field(event) {
 </form>
  <hr />
 <p>&nbsp;</p>
+{% endblock %}
 </body>
 </html>

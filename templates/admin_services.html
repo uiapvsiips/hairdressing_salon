@@ -15,6 +15,9 @@
     </style>
 </head>
 <body>
+{% extends 'base.html' %}
+
+{% block content %}
 {% for service in services %}
   <p><a href="/panel/services/{{ service.id }}/">{{ service.name }}. Ціна: {{ service.price }} грн.</a></p>
 {% endfor %}
@@ -34,5 +37,6 @@
          </div>
      <button type="submit">Додати</button>
  </form>
+{% endblock %}
 </body>
 </html>

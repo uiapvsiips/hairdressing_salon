@@ -51,7 +51,7 @@ def end_booking(request):
     master_service = Master_Services.objects.get(master_id=master_id, service_id=service_id)
     start_time = datetime.strptime(f'{date} {time}', '%Y-%m-%d %H:%M:%S')
     end_time = start_time + timedelta(minutes=service.duration)
-    new_booking = Booking(master=master, service=master_service, user_id=1, date=start_time.date(),
+    new_booking = Booking(master=master, service=master_service, user_id=request.user.id, date=start_time.date(),
                           start_time=start_time.time(), end_time=end_time.time())
     try:
         new_booking.save()
@@ -64,7 +64,7 @@ def end_booking(request):
 def login_handler(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        password = request.POSTget('password')
+        password = request.POST.get('password')
         login_user = authenticate(request, username=username, password=password)
         if login_user is not None:
             login(request, login_user)

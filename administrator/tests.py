@@ -1,4 +1,6 @@
 from datetime import date, timedelta
+
+from django.contrib.auth.models import User, Group
 from django.test import TestCase, Client
 from .models import Schedule
 from salon.models import Master, Services
@@ -19,9 +21,14 @@ class TetsAdminPanel(TestCase):
 
         self.master1.services.set([self.service1, self.service2, self.service3])
 
+        self.user = User.objects.create_user(username='testuser', password='12345')
+        self.admin_group = Group.objects.create(name='administrator')
+        self.user.groups.add(self.admin_group)
+
     def test_add_new_specialist(self):
         self.assertEqual(len(Master.objects.all()), 1)
         client = Client()
+        client.login(username='testuser', password='12345')
         new_specialist_info = {
             'specialist_name': 'Master 2',
             'specialist_phone': '321',
@@ -46,6 +53,7 @@ class TetsAdminPanel(TestCase):
         self.assertEqual(self.master1.name, 'Master 1')
         self.assertEqual(len(self.master1.master_services_set.all()), 3)
         client = Client()
+        client.login(username='testuser', password='12345')
         service4 = Services.objects.create(name='Стрижка бороды', master=self.master1, price=1, duration=100)
         updated_specialist_info = {
             'specialist_name': 'New master 1',
@@ -80,6 +88,7 @@ class TetsAdminPanel(TestCase):
     def test_add_new_service(self):
         self.assertEqual(len(Services.objects.all()), 3)
         client = Client()
+        client.login(username='testuser', password='12345')
         new_service_info = {
             'service_name': 'New Service',
             'price': 60,
@@ -101,6 +110,7 @@ class TetsAdminPanel(TestCase):
     def test_edit_some_service(self):
         self.assertEqual(Services.objects.get(id=self.service1.id).name, 'Укладка волос')
         client = Client()
+        client.login(username='testuser', password='12345')
         new_service_info = {
             'service_name': 'new name',
             'price': self.service1.price,
@@ -126,6 +136,7 @@ class TetsAdminPanel(TestCase):
     def test_add_schedule(self):
         self.assertEqual(len(Schedule.objects.filter(master=self.master1).all()),2)
         client = Client()
+        client.login(username='testuser', password='12345')
         new_schedule_info = {f'date_{self.schedule1.id}': self.schedule1.date,
             f'start_time_{self.schedule1.id}' : self.schedule1.start_time,
             f'end_time_{self.schedule1.id}': self.schedule1.end_time,
@@ -141,6 +152,7 @@ class TetsAdminPanel(TestCase):
     def test_edit_schedule(self):
         self.assertEqual(Schedule.objects.get(id= self.schedule1.id).date, date.today())
         client = Client()
+        client.login(username='testuser', password='12345')
         editing_schedule_info = {f'date_{self.schedule1.id}': self.schedule1.date+timedelta(days=5),
                              f'start_time_{self.schedule1.id}': self.schedule1.start_time,
                              f'end_time_{self.schedule1.id}': self.schedule1.end_time}
@@ -150,6 +162,7 @@ class TetsAdminPanel(TestCase):
     def test_delete_schedule(self):
         self.assertEqual(len(Schedule.objects.filter(master=self.master1).all()),2)
         client = Client()
+        client.login(username='testuser', password='12345')
         deleting_schedule_info = {f'date_{self.schedule1.id}': self.schedule1.date,
                                  f'start_time_{self.schedule1.id}': self.schedule1.start_time,
                                  f'end_time_{self.schedule1.id}': self.schedule1.end_time}

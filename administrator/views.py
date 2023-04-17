@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta
+
+from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import render, redirect, get_object_or_404
 from administrator.models import Schedule
@@ -6,6 +8,7 @@ from salon.models import Services, Master, Master_Services, Booking
 
 
 # Create your views here.
+@user_passes_test(lambda u: u.groups.filter(name='administrator').exists(), login_url='/login/')
 def panel(request):
     return render(request, 'admin_panel.html')
 
@@ -13,7 +16,7 @@ def panel(request):
 def bookings(request):
     return HttpResponse('Admin panel->bookings')
 
-
+@user_passes_test(lambda u: u.groups.filter(name='administrator').exists(), login_url='/login/')
 def specialists(request):
     specialists = Master.objects.all()
     services = Services.objects.all()
@@ -30,7 +33,7 @@ def specialists(request):
         new_specialist.services.set(int(service.split('_')[1]) for service in choosen_services)
     return render(request, 'admin_specialists.html', context={'specialists': specialists, 'services': services})
 
-
+@user_passes_test(lambda u: u.groups.filter(name='administrator').exists(), login_url='/login/')
 def specialist_id_handler(request, specialist_id):
     specialist = get_object_or_404(Master, id=specialist_id)
     if request.method == 'POST':
@@ -57,7 +60,7 @@ def specialist_id_handler(request, specialist_id):
                                                              'specialist_schedule': specialist_schedule,
                                                              'today': datetime.today()})
 
-
+@user_passes_test(lambda u: u.groups.filter(name='administrator').exists(), login_url='/login/')
 def services_handler(request):
     if request.method == 'POST':
         service_name = request.POST.get('service_name')
@@ -71,7 +74,7 @@ def services_handler(request):
     services = Services.objects.all()
     return render(request, 'admin_services.html', context={'services': services})
 
-
+@user_passes_test(lambda u: u.groups.filter(name='administrator').exists(), login_url='/login/')
 def service_id_handler(request, service_id):
     service = get_object_or_404(Services, id=service_id)
     if request.method == 'POST':
@@ -84,7 +87,7 @@ def service_id_handler(request, service_id):
             return HttpResponseServerError(e)
     return render(request, 'admin_service.html', context={'service': service})
 
-
+@user_passes_test(lambda u: u.groups.filter(name='administrator').exists(), login_url='/login/')
 def edit_schedule(request, specialist_id):
     # Видалення вже наявних розкладів
     Schedule.objects.filter(master=specialist_id).exclude(
@@ -116,7 +119,7 @@ def edit_schedule(request, specialist_id):
             return HttpResponseServerError(e)
     return redirect('.')
 
-
+@user_passes_test(lambda u: u.groups.filter(name='administrator').exists(), login_url='/login/')
 def masters_booking(request, specialist_id):
     date = request.GET.get('date')
     bookings = Booking.objects.filter(master=specialist_id, date=date).order_by('start_time')
