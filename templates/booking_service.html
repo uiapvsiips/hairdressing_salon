@@ -10,6 +10,9 @@
     <title>Booking service</title>
 </head>
 <body>
+{% extends 'base.html' %}
+
+{% block content %}
     <form method="post" action="/booking/">
         {% csrf_token %}
         <div>
@@ -19,5 +22,6 @@
             <button type="submit">Обрати дату</button>
         </div>
     </form>
+{% endblock %}
 </body>
 </html>

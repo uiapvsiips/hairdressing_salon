@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Перукарня "Пістрижися"</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+		<div class="logo">Перукарня "Пістрижися"</div>
+		<nav>
+			<ul>
+            {% if request.path != '/' %}
+                <li><a href="/">На головну</a></li>
+            {% endif %}
+                {% if user.is_authenticated %}
+                <li><a href="/logout/">Вийти</a></li>
+                {% else %}
+				<li><a href="/login/">Увійти</a></li>
+				<li><a href="/register/">Зареєструватися</a></li>
+                {% endif %}
+			</ul>
+		</nav>
+	</header>
+	<main>
+	{% block content %}{% endblock %}
+	</main>
+	<footer>
+		<p>© {% now "Y" %} Перукарня "Пістрижися"</p>
+	</footer>
+</body>
+</html>

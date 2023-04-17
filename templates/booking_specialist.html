@@ -5,6 +5,9 @@
     <title>Booking to specialist</title>
 </head>
 <body>
+{% extends 'base.html' %}
+
+{% block content %}
  <form method="post" action="/booking/">
         {% csrf_token %}
 <p>Оберіть бажану послугу та дату, на яку бажаєте забронювати послугу</p>
@@ -20,5 +23,6 @@
             <input type="hidden" id="specialist_id" name="specialist_id" value={{ specialist_id }}>
             <button type="submit">Наступна</button>
  </form>
+{% endblock %}
 </body>
 </html>

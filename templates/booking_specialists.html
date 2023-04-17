@@ -5,8 +5,12 @@
     <title>Booking to specialist</title>
 </head>
 <body>
+{% extends 'base.html' %}
+
+{% block content %}
 {% for specialist in specialists %}
   <p><a href="{{ specialist.id }}/">{{ specialist.name }}.</a></p>
 {% endfor %}
+{% endblock %}
 </body>
 </html>

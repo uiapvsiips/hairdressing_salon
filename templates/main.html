@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Головна</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content %}
+    	<section class="hero">
+			<div class="hero-text">
+				<h1>Створюйте свій образ разом з нами</h1>
+				<p>Ми пропонуємо високоякісні послуги перукарів</p>
+				<a href="/specialist/" class="btn">Записатися на прийом до майстра</a>
+			</div>
+		</section>
+		<section class="about-us">
+			<h2>Про нас</h2>
+			<p>Ми працюємо на ринку більше 10 років і займаємося не тільки волоссям, але і шкірою обличчя та тіла. У нас працюють досвідчені майстри з високим рівнем кваліфікації.</p>
+		</section>
+		<section class="services">
+			<h2>Наші послуги</h2>
+			<div class="service-items">
+				<div class="service-item">
+					<h3>Стрижка</h3>
+					<p>Від 10 гривень</p>
+				</div>
+				<div class="service-item">
+					<h3>Фарбування</h3>
+					<p>Від 300 гривень</p>
+				</div>
+				<div class="service-item">
+					<h3>Макіяж</h3>
+					<p>Нажаль не вміємо</p>
+				</div>
+			</div>
+			<a href="/services/" class="btn">Записатися на послугу</a>
+		</section>
+		<section class="contact">
+			<h2>Контакти</h2>
+			<div class="contact-items">
+				<div class="contact-item">
+					<i class="fa fa-map-marker"></i>
+					<p>м. Касабланка, площа Мухаммеда V, 12</p>
+				</div>
+				<div class="contact-item">
+					<i class="fa fa-phone"></i>
+                    <p>+212-543-345-12</p>
+                    </div>
+				<div class="contact-item">
+					<i class="fa fa-envelope"></i>
+					<p>info@casablanka-pistrizhisya.com</p>
+				</div>
+			</div>
+			<a href="#" class="btn">Зв'язатися з нами</a>
+		</section>
+{% endblock %}
+</body>
+</html>

@@ -106,9 +106,9 @@ def edit_schedule(request, specialist_id):
     # Додавання нових розкладів
     new_schedules_count = len([date for date in request.POST if date.startswith('new_date')])
     for i in range(0, new_schedules_count):
-        date = request.POST[f'new_date_{i}']
-        start_time = request.POST[f'new_start_time_{i}']
-        end_time = request.POST[f'new_end_time_{i}']
+        date = request.POST.get(f'new_date_{i}')
+        start_time = request.get(f'new_start_time_{i}')
+        end_time = request.POST.get(f'new_end_time_{i}')
         new_schedule = Schedule(master_id=specialist_id, date=date, start_time=start_time, end_time=end_time)
         try:
             new_schedule.save()
