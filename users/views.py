@@ -88,7 +88,7 @@ def register_handler(request):
         return HttpResponse(status=500)
     new_user = User.objects.create_user(username=username, email=email, password=password, first_name=first_name,
                                         last_name=last_name)
-    new_user.is_active = False
+    # new_user.is_active = False
     try:
         new_user.save()
         return redirect('/login/')
