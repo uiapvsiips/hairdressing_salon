@@ -7,8 +7,8 @@
         #input_fields {
             display: flex;
         }
-        #one_input_field
-        {
+
+        #one_input_field {
             display: grid;
             margin: 4px;
             text-align: center;
@@ -19,41 +19,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for specialist in specialists %}
-    <p><a href="/panel/specialists/{{ specialist.id }}/">{{ specialist.name }}. Телефон: {{ specialist.phone }}.
-        Ранг: {{ specialist.rank }} Статус: {{ specialist.status }}</a></p>
-{% endfor %}
-<form id="form" action="" method="post">
-    {% csrf_token %}
-    <div id="input_fields">
-        <div id="one_input_field">
-            <label for="specialist_name">Ім'я спеціаліста:</label>
-            <input type="text" id="specialist_name" name="specialist_name">
-        </div>
-        <div id="one_input_field">
-            <label for="specialist_phone">Телефон:</label>
-            <input type="text" id="specialist_phone" name="specialist_phone">
-        </div>
-        <div id="one_input_field">
-            <label for="specialist_rank">Ранг:</label>
-            <select name="specialist_rank">
-  <option value="0">zero rank</option>
-  <option value="1">first rank</option>
-  <option value="2">second rank</option>
-  <option value="3">third rank</option>
-</select>
-        </div>
+    {% for specialist in specialists %}
+        <p><a href="/panel/specialists/{{ specialist.id }}/">{{ specialist.name }}. Телефон: {{ specialist.phone }}.
+            Ранг: {{ specialist.rank }} Статус: {{ specialist.status }}</a></p>
+    {% endfor %}
+    <div class="pagination">
+    <span class="step-links">
+        {% if specialists.has_previous %}
+            <a href="?page=1">&laquo; перша</a>
+            <a href="?page={{ specialists.previous_page_number }}">&lsaquo; попередня</a>
+        {% endif %}
+
+        <span class="current-page">
+            Страница {{ specialists.number }} из {{ specialists.paginator.num_pages }}
+        </span>
+
+        {% if specialists.has_next %}
+            <a href="?page={{ specialists.next_page_number }}">наступна &rsaquo;</a>
+            <a href="?page={{ specialists.paginator.num_pages }}">остання &raquo;</a>
+        {% endif %}
+    </span>
     </div>
-    <div id="services">
-        {% for service in services %}
-  <label>
-    <input type="checkbox" name="service_{{ service.id }}">
-      {{ service.name }}
-  </label>
-{% endfor %}
-    </div>
-    <button type="submit">Додати</button>
-</form>
+    <form id="form" action="" method="post">
+        {% csrf_token %}
+        <div id="input_fields">
+            <div id="one_input_field">
+                <label for="specialist_name">Ім'я спеціаліста:</label>
+                <input type="text" id="specialist_name" name="specialist_name">
+            </div>
+            <div id="one_input_field">
+                <label for="specialist_phone">Телефон:</label>
+                <input type="text" id="specialist_phone" name="specialist_phone">
+            </div>
+            <div id="one_input_field">
+                <label for="specialist_rank">Ранг:</label>
+                <select name="specialist_rank">
+                    <option value="0">zero rank</option>
+                    <option value="1">first rank</option>
+                    <option value="2">second rank</option>
+                    <option value="3">third rank</option>
+                </select>
+            </div>
+        </div>
+        <div id="services">
+            {% for service in services %}
+                <label>
+                    <input type="checkbox" name="service_{{ service.id }}">
+                    {{ service.name }}
+                </label>
+            {% endfor %}
+        </div>
+        <button type="submit">Додати</button>
+    </form>
 {% endblock %}
 </body>
 </html>

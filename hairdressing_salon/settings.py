@@ -25,6 +25,10 @@ SECRET_KEY = 'django-insecure-k4+(b9p^ifewm-s@+(_bo=br#1vh4qtf(8z@q=0@%m4rt+&r#o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+PAGINATION_PAGE_SIZE = 2
+
+PAGINATION_PAGE_LINKS = 4
+
 ALLOWED_HOSTS = []
 
 

@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from django.contrib.auth.decorators import user_passes_test
+from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import render, redirect, get_object_or_404
 from administrator.models import Schedule
@@ -18,7 +19,10 @@ def bookings(request):
 
 @user_passes_test(lambda u: u.groups.filter(name='administrator').exists(), login_url='/login/')
 def specialists(request):
-    specialists = Master.objects.all()
+    specialists_list = Master.objects.all()
+    paginator = Paginator(specialists_list, 2)
+    page = request.GET.get('page')
+    specialists = paginator.get_page(page)
     services = Services.objects.all()
     if request.method == 'POST':
         name = request.POST.get('specialist_name')

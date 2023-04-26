@@ -4,16 +4,8 @@
     <list default="true" id="249cefd4-f4e8-4ab0-a4cc-ef15961442f9" name="Changes" comment="upd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/administrator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_panel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_service.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_service.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_services.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_services.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_specialist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_specialist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin_specialist_bookings.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_specialist_bookings.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hairdressing_salon/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/hairdressing_salon/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin_specialists.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_specialists.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +47,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Kyrylo/PycharmProjects/hairdressing_salon/templates",
+    "last_opened_file_path": "C:/Users/Kyrylo/PycharmProjects/hairdressing_salon",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
@@ -73,7 +65,7 @@
       <recent name="C:\Users\Kyrylo\PycharmProjects\hairdressing_salon\users" />
     </key>
   </component>
-  <component name="RunManager" selected="Django tests.Test: administrator.tests.TetsAdminPanel">
+  <component name="RunManager" selected="Python.manage">
     <configuration name="Test: administrator.tests.TetsAdminPanel" type="DjangoTestsConfigurationType" temporary="true">
       <module name="hairdressing_salon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -94,6 +86,26 @@
       <option name="OPTIONS" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Test: administrator.tests.TetsAdminPanel.test_add_new_specialist" type="DjangoTestsConfigurationType" temporary="true">
+      <module name="hairdressing_salon" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="administrator.tests.TetsAdminPanel.test_add_new_specialist" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Test: salon.tests.CalcBreaksTestCase" type="DjangoTestsConfigurationType" temporary="true">
       <module name="hairdressing_salon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -108,26 +120,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="TARGET" value="salon.tests.CalcBreaksTestCase" />
-      <option name="SETTINGS_FILE" value="" />
-      <option name="CUSTOM_SETTINGS" value="false" />
-      <option name="USE_OPTIONS" value="false" />
-      <option name="OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test: salon.tests.CalcBreaksTestCase.test_bookings_in_between" type="DjangoTestsConfigurationType" temporary="true">
-      <module name="hairdressing_salon" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="TARGET" value="salon.tests.CalcBreaksTestCase.test_bookings_in_between" />
       <option name="SETTINGS_FILE" value="" />
       <option name="CUSTOM_SETTINGS" value="false" />
       <option name="USE_OPTIONS" value="false" />
@@ -223,19 +215,19 @@
     <list>
       <item itemvalue="Django Server.hairdressing_salon" />
       <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase" />
-      <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase.test_bookings_in_between" />
       <item itemvalue="Django tests.Test: salon.tests.HandlersTests" />
       <item itemvalue="Django tests.Test: users.tests.BookingTests.test_save_booking" />
       <item itemvalue="Django tests.Test: administrator.tests.TetsAdminPanel" />
+      <item itemvalue="Django tests.Test: administrator.tests.TetsAdminPanel.test_add_new_specialist" />
       <item itemvalue="Python.manage" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Django tests.Test: administrator.tests.TetsAdminPanel" />
+        <item itemvalue="Django tests.Test: administrator.tests.TetsAdminPanel.test_add_new_specialist" />
         <item itemvalue="Django tests.Test: salon.tests.HandlersTests" />
         <item itemvalue="Django tests.Test: users.tests.BookingTests.test_save_booking" />
         <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase" />
-        <item itemvalue="Django tests.Test: salon.tests.CalcBreaksTestCase.test_bookings_in_between" />
       </list>
     </recent_temporary>
   </component>
@@ -259,6 +251,8 @@
       <workItem from="1681106231138" duration="4879000" />
       <workItem from="1681537834576" duration="6968000" />
       <workItem from="1681751383040" duration="9082000" />
+      <workItem from="1681796278296" duration="56000" />
+      <workItem from="1682508547577" duration="399000" />
     </task>
     <task id="LOCAL-00001" summary="upd hw1">
       <created>1679485343281</created>
@@ -450,7 +444,7 @@
     <SUITE FILE_PATH="coverage/hairdressing_salon$Test__administrator_tests_TetsAdminPanel_test_edit_some_specialist.coverage" NAME="Test: administrator.tests.TetsAdminPanel.test_edit_some_specialist Coverage Results" MODIFIED="1681560976402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase.coverage" NAME="Test: salon.tests.CalcBreaksTestCase Coverage Results" MODIFIED="1681759145578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_HandlersTests_test_booking_free_time.coverage" NAME="Test: salon.tests.HandlersTests.test_booking_free_time Coverage Results" MODIFIED="1681548751304" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/hairdressing_salon$manage.coverage" NAME="manage Coverage Results" MODIFIED="1681759690486" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hairdressing_salon$manage.coverage" NAME="manage Coverage Results" MODIFIED="1682508801444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_one_booking.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_one_booking Coverage Results" MODIFIED="1681111667848" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$Test__salon_tests_CalcBreaksTestCase_test_bookings_in_between.coverage" NAME="Test: salon.tests.CalcBreaksTestCase.test_bookings_in_between Coverage Results" MODIFIED="1681759095266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/hairdressing_salon$Test__administrator_tests_TetsAdminPanel_test_edit_schedule.coverage" NAME="Test: administrator.tests.TetsAdminPanel.test_edit_schedule Coverage Results" MODIFIED="1681752795009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
