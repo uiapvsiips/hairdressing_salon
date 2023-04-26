@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #main {
+            display: inline-block;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Booking service</title>
+</head>
+<body>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Історія бронювань</h1>
+    <table>
+        <th>Дата</th>
+        <th>Майстер</th>
+        <th>Послуга</th>
+        <th>Час бронювання</th>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.date }}</td>
+                <td>{{ booking.master_id }}</td>
+                <td>{{ booking.service_id }}</td>
+                <td>{{ booking.start_time }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% if bookings.has_other_pages %}
+        <div class="pagination">
+    <span class="step-links">
+        {% if bookings.has_previous %}
+            <a href="?page=1">&laquo; перша</a>
+            <a href="?page={{ bookings.previous_page_number }}">&lsaquo; попередня</a>
+        {% endif %}
+
+        <span class="current-page">
+            Страница {{ bookings.number }} из {{ bookings.paginator.num_pages }}
+        </span>
+
+        {% if bookings.has_next %}
+            <a href="?page={{ bookings.next_page_number }}">наступна &rsaquo;</a>
+            <a href="?page={{ bookings.paginator.num_pages }}">остання &raquo;</a>
+        {% endif %}
+    </span>
+        </div>
+    {% endif %}
+{% endblock %}
+</body>
+</html>

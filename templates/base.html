@@ -9,7 +9,6 @@
 	<header>
 		<div class="logo">Перукарня "Пістрижися"</div>
 		<nav>
-		<nav>
 			<ul>
 
             {% if request.path != '/' %}
@@ -17,6 +16,7 @@
             {% endif %}
                 {% if user.is_authenticated %}
                 <li><a href="/logout/">Вийти</a></li>
+                <li><a href="/booking/history">Історія бронювань</a></li>
                 {% else %}
 				<li><a href="/login/">Увійти</a></li>
 				<li><a href="/register/">Зареєструватися</a></li>

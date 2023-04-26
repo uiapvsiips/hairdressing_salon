@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import render, redirect
 
@@ -99,3 +100,13 @@ def register_handler(request):
 def logout_handler(request):
     logout(request)
     return redirect('/')
+
+@login_required(login_url='/login/')
+def booking_history(request):
+    user_bookings_list = Booking.objects.filter(user=request.user).all()
+    paginator = Paginator(user_bookings_list, 2)
+    page = request.GET.get('page')
+    bookings = paginator.get_page(page)
+    b = bookings.has_other_pages()
+    d=1
+    return render(request, 'bookings_history.html', {'bookings': bookings})
