@@ -107,6 +107,4 @@ def booking_history(request):
     paginator = Paginator(user_bookings_list, 2)
     page = request.GET.get('page')
     bookings = paginator.get_page(page)
-    b = bookings.has_other_pages()
-    d=1
     return render(request, 'bookings_history.html', {'bookings': bookings})
