@@ -7,8 +7,11 @@ from salon.models import Master, Services
 
 
 class TetsAdminPanel(TestCase):
+    fixtures = ['fixtures_for_user_and_admin.json']
     def setUp(self):
-        self.master1 = Master.objects.create(name='Master 1', phone='123', rank=2)
+        self.master1 = Master.objects.first()
+
+        self.user1 = User.objects.first()
 
         self.schedule1 = Schedule.objects.create(date=date.today(), master=self.master1, start_time='10:00',
                                                  end_time='17:00')
@@ -21,14 +24,12 @@ class TetsAdminPanel(TestCase):
 
         self.master1.services.set([self.service1, self.service2, self.service3])
 
-        self.user = User.objects.create_user(username='testuser', password='12345')
-        self.admin_group = Group.objects.create(name='administrator')
-        self.user.groups.add(self.admin_group)
+
 
     def test_add_new_specialist(self):
-        self.assertEqual(len(Master.objects.all()), 1)
+        self.assertEqual(len(Master.objects.all()), 3)
         client = Client()
-        client.login(username='testuser', password='12345')
+        client.login(username=self.user1.username, password='123')
         new_specialist_info = {
             'specialist_name': 'Master 2',
             'specialist_phone': '321',
@@ -36,7 +37,7 @@ class TetsAdminPanel(TestCase):
         }
         response = client.post('/panel/specialists/', new_specialist_info)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(Master.objects.all()), 2)
+        self.assertEqual(len(Master.objects.all()), 4)
 
         # Перевіряємо, що поверне 500 код, якщо передати невалідні дані
         bad_new_specialist_info = {
@@ -46,14 +47,14 @@ class TetsAdminPanel(TestCase):
         }
         response = client.post('/panel/specialists/', bad_new_specialist_info)
         self.assertEqual(response.status_code, 500)
-        self.assertEqual(len(Master.objects.all()), 2)
+        self.assertEqual(len(Master.objects.all()), 4)
 
 
     def test_edit_some_specialist(self):
-        self.assertEqual(self.master1.name, 'Master 1')
+        self.assertEqual(self.master1.name, 'Марина')
         self.assertEqual(len(self.master1.master_services_set.all()), 3)
         client = Client()
-        client.login(username='testuser', password='12345')
+        client.login(username=self.user1.username, password='123')
         service4 = Services.objects.create(name='Стрижка бороды', master=self.master1, price=1, duration=100)
         updated_specialist_info = {
             'specialist_name': 'New master 1',
@@ -65,7 +66,7 @@ class TetsAdminPanel(TestCase):
         response = client.post(f'/panel/specialists/{self.master1.id}/', updated_specialist_info)
         self.assertEqual(response.status_code, 200)
         #Перевіряємо, чи змінилося ім'я
-        self.assertEqual(Master.objects.get().name, 'New master 1')
+        self.assertEqual(Master.objects.get(id=self.master1.id).name, 'New master 1')
 
         #Перевіряємо, чи додалися/ видалилися сервіси
         self.assertEqual(len(self.master1.master_services_set.all()), 1)
@@ -86,9 +87,9 @@ class TetsAdminPanel(TestCase):
         response = client.post(f'/panel/specialists/555/')
         self.assertEqual(response.status_code, 404)
     def test_add_new_service(self):
-        self.assertEqual(len(Services.objects.all()), 3)
+        self.assertEqual(len(Services.objects.all()), 21)
         client = Client()
-        client.login(username='testuser', password='12345')
+        client.login(username=self.user1.username, password='123')
         new_service_info = {
             'service_name': 'New Service',
             'price': 60,
@@ -96,7 +97,7 @@ class TetsAdminPanel(TestCase):
         }
         response = client.post('/panel/services/', new_service_info)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(Services.objects.all()), 4)
+        self.assertEqual(len(Services.objects.all()), 22)
 
         # Перевіряємо, що поверне 500 код, якщо передати невалідні дані
         bad_service_info = {
@@ -110,7 +111,7 @@ class TetsAdminPanel(TestCase):
     def test_edit_some_service(self):
         self.assertEqual(Services.objects.get(id=self.service1.id).name, 'Укладка волос')
         client = Client()
-        client.login(username='testuser', password='12345')
+        client.login(username=self.user1.username, password='123')
         new_service_info = {
             'service_name': 'new name',
             'price': self.service1.price,
@@ -136,7 +137,7 @@ class TetsAdminPanel(TestCase):
     def test_add_schedule(self):
         self.assertEqual(len(Schedule.objects.filter(master=self.master1).all()),2)
         client = Client()
-        client.login(username='testuser', password='12345')
+        client.login(username=self.user1.username, password='123')
         new_schedule_info = {f'date_{self.schedule1.id}': self.schedule1.date,
             f'start_time_{self.schedule1.id}' : self.schedule1.start_time,
             f'end_time_{self.schedule1.id}': self.schedule1.end_time,
@@ -152,7 +153,7 @@ class TetsAdminPanel(TestCase):
     def test_edit_schedule(self):
         self.assertEqual(Schedule.objects.get(id= self.schedule1.id).date, date.today())
         client = Client()
-        client.login(username='testuser', password='12345')
+        client.login(username=self.user1.username, password='123')
         editing_schedule_info = {f'date_{self.schedule1.id}': self.schedule1.date+timedelta(days=5),
                              f'start_time_{self.schedule1.id}': self.schedule1.start_time,
                              f'end_time_{self.schedule1.id}': self.schedule1.end_time}
@@ -162,7 +163,7 @@ class TetsAdminPanel(TestCase):
     def test_delete_schedule(self):
         self.assertEqual(len(Schedule.objects.filter(master=self.master1).all()),2)
         client = Client()
-        client.login(username='testuser', password='12345')
+        client.login(username=self.user1.username, password='123')
         deleting_schedule_info = {f'date_{self.schedule1.id}': self.schedule1.date,
                                  f'start_time_{self.schedule1.id}': self.schedule1.start_time,
                                  f'end_time_{self.schedule1.id}': self.schedule1.end_time}

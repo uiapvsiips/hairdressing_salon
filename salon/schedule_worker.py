@@ -13,7 +13,7 @@ def __get_info_for_calc(master_id, booking_date, service_id):
 
     # Якщо майстер в цей день не працює - повертаємо пустий ліст
     if not masters_schedule:
-        return []
+        return {}
 
     # Вибираємо з бази всі записи до майстра на дату.
     masters_bookings_to_date = Booking.objects.filter(master=master, date=booking_date).order_by('start_time').all()
@@ -75,8 +75,13 @@ def _is_longer_break(next_booking_start_time, prev_booking_end_time, service_dur
 
 
 def get_time_vars_for_service(master_id, booking_date, service_id):
+    date_in_datetime_format = datetime.strptime(booking_date, '%Y-%m-%d')
+    if date_in_datetime_format.date()<datetime.now().date():
+        return []
     # Отримуємо "віконця" майстра, які більше або дорівнюють часу надання послуги
     info_for_calc = __get_info_for_calc(master_id, booking_date, service_id)
+    if not info_for_calc:
+        return []
     free_gaps_in_schedule = calc_breaks(**info_for_calc)
 
     time_vars = []
